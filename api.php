@@ -135,7 +135,7 @@
                     'icon' => $GLOBALS['weather_icons']->wind
                 ];
             } else {
-                $hour = data("H");
+                $hour = date("H");
 
                 //others I cant detect easy just say its partly_cloudy
                 return (object)[
