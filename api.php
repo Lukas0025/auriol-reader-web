@@ -5,7 +5,7 @@
 
         private db;
 
-        public function conscruct() {
+        function __construct() {
             $this->db = new SQLite3('/var/local/auriol-db.sl3', SQLITE3_OPEN_READONLY);
         }
 
