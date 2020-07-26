@@ -14,7 +14,7 @@
         'humidity'  => 'Humidity',
         'rain'      => 'Rain',
 
-        'weathers'   => [
+        'weathers'   => (object)[
             'clear'         => 'Clear',
             'rain'          => 'Rain',
             'wind'          => 'Windy',

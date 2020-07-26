@@ -17,8 +17,9 @@
          * open database file
          * @return null
          */
-        function __construct() {
+        function __construct($lang) {
             $this->db = new SQLite3('/var/local/auriol-db.sl3', SQLITE3_OPEN_READONLY);
+            $this->lang = $lang;
         }
 
         /**

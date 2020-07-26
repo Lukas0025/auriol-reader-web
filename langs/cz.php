@@ -14,7 +14,7 @@
         'humidity'  => 'Vlhkost',
         'rain'      => 'Déšť',
 
-        'weathers'   => [
+        'weathers'   => (object)[
             'clear'         => 'Jasno',
             'rain'          => 'Déšť',
             'wind'          => 'Větrno',
