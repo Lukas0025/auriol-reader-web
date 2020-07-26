@@ -109,7 +109,7 @@
             $date->modify("-$min minutes");
 
             $statement = $this->db->prepare('SELECT "amount" FROM "pluviometer" WHERE "created" > ? ORDER BY "created" ASC LIMIT 1');
-            $statement->bindValue(1, date( 'Y-m-d H:i:s', $date ));
+            $statement->bindValue(1, $date->format('Y-m-d H:i:s'));
             $result = $statement->execute();
             $rain_start = $result->fetchArray(SQLITE3_ASSOC);
                         
