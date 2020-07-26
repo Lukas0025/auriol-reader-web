@@ -63,7 +63,7 @@
         private function getCurrentTemp() {
             $statement = $this->db->prepare('SELECT * FROM "temperature" ORDER BY "created" DESC LIMIT 1');
             $result = $statement->execute();
-            $result->fetchArray(SQLITE3_ASSOC)['amount'];
+            return $result->fetchArray(SQLITE3_ASSOC)['amount'];
         }
 
         /**
@@ -129,7 +129,7 @@
                     'name' => $this->lang->weathers->rain,
                     'icon' => $GLOBALS['weather_icons']->rain
                 ];
-            } else if ($this->getCurrentWind() > 35) {
+            } else if ($this->getCurrentWind()['speed'] > 35) {
                 return (object)[
                     'name' => $this->lang->weathers->wind,
                     'icon' => $GLOBALS['weather_icons']->wind
