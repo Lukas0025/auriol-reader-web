@@ -104,7 +104,7 @@
             $rain_end = $result->fetchArray(SQLITE3_ASSOC);
                         
             //now get amount on start
-            $date = strtotime($rain_end['created']);
+            $date = new DateTime($rain_end['created']);
             $date->modify("-$min minutes");
 
             $statement = $this->db->prepare('SELECT "amount" FROM "pluviometer" WHERE "created" > ? ORDER BY "created" ASC LIMIT 1');
