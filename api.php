@@ -1,7 +1,7 @@
 <?php
     include 'php/weather-icons.php';
 
-    class example_api {
+    class auriol_api {
 
         private db;
 

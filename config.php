@@ -1,7 +1,7 @@
 <?php
 
     $config = (object)[
-        'location' => 'Brno, CZ'
+        'location' => 'Aurilo weather'
     ];
 
 ?>
