@@ -2,6 +2,7 @@ build:
 	mkdir build
 	git clone https://github.com/Lukas0025/universal-weather-station-php-site ./build
 	cp -r templates build
+	cp -r langs build
 	cp api.php build
 	cp config.php build
 	cp index.php build

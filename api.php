@@ -91,6 +91,12 @@
             return $result->fetchArray(SQLITE3_ASSOC);
         }
 
+        /**
+         * inner function
+         * get rain amount in min iterval in mm
+         * @param int min - interval for search in minutes
+         * @return float
+         */
         private function getRainInLast($min) {
             //rain now
             $statement = $this->db->prepare('SELECT * FROM "pluviometer" ORDER BY "created" DESC LIMIT 1');
@@ -98,10 +104,10 @@
             $rain_end = $result->fetchArray(SQLITE3_ASSOC);
                         
             //now get amount on start
-            $date = new DateTime();
+            $date = strtotime($rain_end['created']);
             $date->modify("-$min minutes");
 
-            $statement = $this->db->prepare('SELECT "amount" FROM "pluviometer" WHERE "created" < ? ORDER BY "created" DESC LIMIT 1');
+            $statement = $this->db->prepare('SELECT "amount" FROM "pluviometer" WHERE "created" > ? ORDER BY "created" ASC LIMIT 1');
             $statement->bindValue(1, date( 'Y-m-d H:i:s', $date ));
             $result = $statement->execute();
             $rain_start = $result->fetchArray(SQLITE3_ASSOC);
@@ -117,7 +123,7 @@
          */
         private function decodeCurrentWeather() {
             //if delte between two rains with time distance 10m > 0.1 - raining
-            if (getRainInLast(10) > 0.1) {
+            if ($this->getRainInLast(10) > 0.1) {
                 return (object)[
                     'name' => $this->lang->weathers->rain,
                     'icon' => $GLOBALS['weather_icons']->rain
