@@ -1,13 +1,21 @@
 <?php
+    /**
+     * Auriol wetaher station web reader
+     * website index
+     * @author Lukáš Plevač <lukasplevac@gmail.com>
+     * @date 26.7.2020
+     */
+
     include 'php/templates.php';
     include 'php/components.php';
     include 'api.php';
     include 'config.php';
+    include 'langs/' . $config->lang . '.php';
 
     $comp = new components();
     $temp = new template('index');
 
-    $api =  new auriol_api();
+    $api =  new auriol_api($lang);
 
     $current = $api->current();
 
