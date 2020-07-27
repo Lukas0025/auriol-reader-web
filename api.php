@@ -119,6 +119,18 @@
 
         /**
          * inner function
+         * Get current Dew Point
+         * @return float
+         */
+        private function getCurrentDewPoint() {
+            $t = $this->getCurrentTemp();
+            $h = $this->getCurrentHumidity();
+
+            return $t - (100 - $h) / 5;
+        }
+
+        /**
+         * inner function
          * Get current wetaher status
          * @return obj array of str with keys: name, icon
          */
@@ -129,10 +141,17 @@
                     'name' => $this->lang->weathers->rain,
                     'icon' => $GLOBALS['weather_icons']->rain
                 ];
-            } else if ($this->getCurrentWind()['speed'] > 35) {
+            } else if ($this->getCurrentWind()['speed'] > 10) {
+                // when wind is > 35KPH
                 return (object)[
                     'name' => $this->lang->weathers->wind,
                     'icon' => $GLOBALS['weather_icons']->wind
+                ];
+            } else if ($this->getCurrentDewPoint() - $this->getCurrentTemp() < 2.5) {
+                //when delta between dew point and temperature is < 2.5 C
+                return (object)[
+                    'name' => $this->lang->weathers->mist,
+                    'icon' => $GLOBALS['weather_icons']->mist
                 ];
             } else {
                 $hour = date("H");
